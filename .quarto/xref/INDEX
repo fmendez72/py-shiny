@@ -31,5 +31,8 @@
   },
   "tab-interactive/interactive-index.qmd": {
     "interactive-index.html": "7fbbafae"
+  },
+  "tab-py/py-index.qmd": {
+    "py-index.html": "fc299b70"
   }
 }

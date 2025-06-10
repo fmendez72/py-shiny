@@ -9,6 +9,8 @@ website:
     left:
       - href: index.qmd
         text: Home
+#      - href: tab-py/py-index.qmd
+#        text: Interactive Analysis
       - href: tab-interactive/interactive-index.qmd
         text: Interactive Analysis
     logo: images/logo_tepak.png

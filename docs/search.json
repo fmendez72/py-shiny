@@ -1,19 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Add a title",
-    "section": "",
-    "text": "#| context: setup\n#| include: false\nlibrary(shiny)\nlibrary(ggplot2)\nThis is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\nSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo."
-  },
-  {
-    "objectID": "index.html#nemo-enim-ipsam",
-    "href": "index.html#nemo-enim-ipsam",
-    "title": "Add a title",
-    "section": "Nemo enim ipsam",
-    "text": "Nemo enim ipsam\nNemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt."
-  },
-  {
     "objectID": "tab-interactive/interactive-index.html",
     "href": "tab-interactive/interactive-index.html",
     "title": "Interactive Data Analysis",
@@ -47,5 +33,54 @@
     "title": "Interactive Data Analysis",
     "section": "Results",
     "text": "Results\nThe interactive component above allows users to explore relationships between different variables in the mtcars dataset."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "LLM Portal",
+    "section": "",
+    "text": "This portal provides easy access to powerful text processing capabilities using Large Language Models through OpenRouter’s API.\n\n\n\n\nAutomatically generate concise summaries of your text documents. - Upload CSV files with text data - Choose from multiple LLM models - Configure summary length and style - Download processed results\nGo to Text Summarizer →\n\n\n\nClassify text documents into predefined categories. - One-shot Classification: Define categories with descriptions - Few-shot Classification: Train with example documents - Support for multiple model types - Batch processing capabilities\nGo to Text Classifier →\n\n\n\nExplore and visualize your text processing results. - Interactive charts and graphs - Summary statistics - Export capabilities\nGo to Data Viewer →\n\n\n\n\nHere’s a simple interactive example of what our tools can do:\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Sample data representing text processing results\nnp.random.seed(42)\nmodels = ['Claude Sonnet 4', 'Mistral Large', 'GPT-4', 'Devstral Small']\naccuracy_scores = [0.92, 0.88, 0.90, 0.85]\nprocessing_times = [2.3, 1.8, 2.1, 1.2]\n\n# Create a simple comparison chart\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))\n\n# Accuracy comparison\nax1.bar(models, accuracy_scores, color=['#2E86AB', '#A23B72', '#F18F01', '#C73E1D'])\nax1.set_title('Model Accuracy Comparison')\nax1.set_ylabel('Accuracy Score')\nax1.set_ylim(0, 1)\nax1.tick_params(axis='x', rotation=45)\n\n# Processing time comparison\nax2.bar(models, processing_times, color=['#2E86AB', '#A23B72', '#F18F01', '#C73E1D'])\nax2.set_title('Processing Time Comparison')\nax2.set_ylabel('Time (seconds)')\nax2.tick_params(axis='x', rotation=45)\n\nplt.tight_layout()\nplt.show()\n\n# Display summary statistics\nsummary_df = pd.DataFrame({\n    'Model': models,\n    'Accuracy': accuracy_scores,\n    'Speed (s)': processing_times,\n    'Score': [acc/time for acc, time in zip(accuracy_scores, processing_times)]\n})\n\nprint(\"Model Performance Summary:\")\nprint(summary_df.round(3))\n\n\n\n\n\n\n\n\nModel Performance Summary:\n             Model  Accuracy  Speed (s)  Score\n0  Claude Sonnet 4      0.92        2.3  0.400\n1    Mistral Large      0.88        1.8  0.489\n2            GPT-4      0.90        2.1  0.429\n3   Devstral Small      0.85        1.2  0.708\n\n\n\n\n\n\n\nCode\n# Example of how our API processes text\ndef simulate_text_processing():\n    \"\"\"Simulate the text processing workflow\"\"\"\n    \n    # Sample input text\n    sample_texts = [\n        \"Climate change is a pressing global issue that requires immediate action.\",\n        \"Machine learning algorithms are revolutionizing data analysis.\",\n        \"The economic impact of automation continues to reshape industries.\"\n    ]\n    \n    # Simulate processing results\n    results = []\n    for i, text in enumerate(sample_texts):\n        results.append({\n            'id': f'text_{i+1}',\n            'original_length': len(text),\n            'summary_length': len(text) // 3,\n            'processing_time': np.random.uniform(0.5, 2.0),\n            'confidence': np.random.uniform(0.85, 0.98)\n        })\n    \n    return pd.DataFrame(results)\n\n# Show processing simulation\nprocessing_results = simulate_text_processing()\nprint(\"Sample Processing Results:\")\nprint(processing_results.round(3))\n\n# Create a simple visualization\nplt.figure(figsize=(10, 6))\nplt.scatter(processing_results['original_length'], \n           processing_results['summary_length'],\n           s=processing_results['confidence']*100,\n           alpha=0.7,\n           c=processing_results['processing_time'],\n           cmap='viridis')\n\nplt.xlabel('Original Text Length (characters)')\nplt.ylabel('Summary Length (characters)')\nplt.title('Text Summarization Performance')\nplt.colorbar(label='Processing Time (s)')\nplt.grid(True, alpha=0.3)\nplt.show()\n\n\nSample Processing Results:\n       id  original_length  summary_length  processing_time  confidence\n0  text_1               73              24            1.062       0.974\n1  text_2               62              20            1.598       0.928\n2  text_3               66              22            0.734       0.870\n\n\n\n\n\n\n\n\n\n\n\n\n\nChoose Your Task: Select from text summarization or classification\nUpload Your Data: Provide CSV files with your text data\nConfigure Settings: Choose models, parameters, and output preferences\nProcess & Download: Run the analysis and download your results\n\n\n\n\n\nMultiple LLM Models: Access to state-of-the-art language models\nBatch Processing: Handle large datasets efficiently\nSession Management: Secure, isolated processing sessions\nReal-time Status: Monitor job progress in real-time\nExport Options: Download results in various formats\n\n\n\n\nFor questions, documentation, or technical support, please refer to our documentation pages or contact the development team.\n\nPowered by OpenRouter API • Built with Quarto & Python"
+  },
+  {
+    "objectID": "index.html#available-tools",
+    "href": "index.html#available-tools",
+    "title": "LLM Portal",
+    "section": "",
+    "text": "Automatically generate concise summaries of your text documents. - Upload CSV files with text data - Choose from multiple LLM models - Configure summary length and style - Download processed results\nGo to Text Summarizer →\n\n\n\nClassify text documents into predefined categories. - One-shot Classification: Define categories with descriptions - Few-shot Classification: Train with example documents - Support for multiple model types - Batch processing capabilities\nGo to Text Classifier →\n\n\n\nExplore and visualize your text processing results. - Interactive charts and graphs - Summary statistics - Export capabilities\nGo to Data Viewer →"
+  },
+  {
+    "objectID": "index.html#quick-start-demo",
+    "href": "index.html#quick-start-demo",
+    "title": "LLM Portal",
+    "section": "",
+    "text": "Here’s a simple interactive example of what our tools can do:\n\nimport pandas as pd\nimport matplotlib.pyplot as plt\nimport numpy as np\n\n# Sample data representing text processing results\nnp.random.seed(42)\nmodels = ['Claude Sonnet 4', 'Mistral Large', 'GPT-4', 'Devstral Small']\naccuracy_scores = [0.92, 0.88, 0.90, 0.85]\nprocessing_times = [2.3, 1.8, 2.1, 1.2]\n\n# Create a simple comparison chart\nfig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))\n\n# Accuracy comparison\nax1.bar(models, accuracy_scores, color=['#2E86AB', '#A23B72', '#F18F01', '#C73E1D'])\nax1.set_title('Model Accuracy Comparison')\nax1.set_ylabel('Accuracy Score')\nax1.set_ylim(0, 1)\nax1.tick_params(axis='x', rotation=45)\n\n# Processing time comparison\nax2.bar(models, processing_times, color=['#2E86AB', '#A23B72', '#F18F01', '#C73E1D'])\nax2.set_title('Processing Time Comparison')\nax2.set_ylabel('Time (seconds)')\nax2.tick_params(axis='x', rotation=45)\n\nplt.tight_layout()\nplt.show()\n\n# Display summary statistics\nsummary_df = pd.DataFrame({\n    'Model': models,\n    'Accuracy': accuracy_scores,\n    'Speed (s)': processing_times,\n    'Score': [acc/time for acc, time in zip(accuracy_scores, processing_times)]\n})\n\nprint(\"Model Performance Summary:\")\nprint(summary_df.round(3))\n\n\n\n\n\n\n\n\nModel Performance Summary:\n             Model  Accuracy  Speed (s)  Score\n0  Claude Sonnet 4      0.92        2.3  0.400\n1    Mistral Large      0.88        1.8  0.489\n2            GPT-4      0.90        2.1  0.429\n3   Devstral Small      0.85        1.2  0.708"
+  },
+  {
+    "objectID": "index.html#how-it-works",
+    "href": "index.html#how-it-works",
+    "title": "LLM Portal",
+    "section": "",
+    "text": "Code\n# Example of how our API processes text\ndef simulate_text_processing():\n    \"\"\"Simulate the text processing workflow\"\"\"\n    \n    # Sample input text\n    sample_texts = [\n        \"Climate change is a pressing global issue that requires immediate action.\",\n        \"Machine learning algorithms are revolutionizing data analysis.\",\n        \"The economic impact of automation continues to reshape industries.\"\n    ]\n    \n    # Simulate processing results\n    results = []\n    for i, text in enumerate(sample_texts):\n        results.append({\n            'id': f'text_{i+1}',\n            'original_length': len(text),\n            'summary_length': len(text) // 3,\n            'processing_time': np.random.uniform(0.5, 2.0),\n            'confidence': np.random.uniform(0.85, 0.98)\n        })\n    \n    return pd.DataFrame(results)\n\n# Show processing simulation\nprocessing_results = simulate_text_processing()\nprint(\"Sample Processing Results:\")\nprint(processing_results.round(3))\n\n# Create a simple visualization\nplt.figure(figsize=(10, 6))\nplt.scatter(processing_results['original_length'], \n           processing_results['summary_length'],\n           s=processing_results['confidence']*100,\n           alpha=0.7,\n           c=processing_results['processing_time'],\n           cmap='viridis')\n\nplt.xlabel('Original Text Length (characters)')\nplt.ylabel('Summary Length (characters)')\nplt.title('Text Summarization Performance')\nplt.colorbar(label='Processing Time (s)')\nplt.grid(True, alpha=0.3)\nplt.show()\n\n\nSample Processing Results:\n       id  original_length  summary_length  processing_time  confidence\n0  text_1               73              24            1.062       0.974\n1  text_2               62              20            1.598       0.928\n2  text_3               66              22            0.734       0.870"
+  },
+  {
+    "objectID": "index.html#getting-started",
+    "href": "index.html#getting-started",
+    "title": "LLM Portal",
+    "section": "",
+    "text": "Choose Your Task: Select from text summarization or classification\nUpload Your Data: Provide CSV files with your text data\nConfigure Settings: Choose models, parameters, and output preferences\nProcess & Download: Run the analysis and download your results"
+  },
+  {
+    "objectID": "index.html#system-features",
+    "href": "index.html#system-features",
+    "title": "LLM Portal",
+    "section": "",
+    "text": "Multiple LLM Models: Access to state-of-the-art language models\nBatch Processing: Handle large datasets efficiently\nSession Management: Secure, isolated processing sessions\nReal-time Status: Monitor job progress in real-time\nExport Options: Download results in various formats"
+  },
+  {
+    "objectID": "index.html#support",
+    "href": "index.html#support",
+    "title": "LLM Portal",
+    "section": "",
+    "text": "For questions, documentation, or technical support, please refer to our documentation pages or contact the development team.\n\nPowered by OpenRouter API • Built with Quarto & Python"
   }
 ]

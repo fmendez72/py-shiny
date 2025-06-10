@@ -1,20 +1,169 @@
 ---
-title: "Add a title"
+title: "LLM Portal"
+subtitle: "Text Processing with Large Language Models"
+format: 
+  html:
+    theme: cosmo
+    toc: true
+    toc-location: left
+    code-fold: true
+    embed-resources: false
+filters:
+  - shinylive
 ---
 
-```{shinylive-r}
-#| context: setup
-#| include: false
-library(shiny)
-library(ggplot2)
+# Welcome to LLM Portal
+
+This portal provides easy access to powerful text processing capabilities using Large Language Models through OpenRouter's API.
+
+## Available Tools
+
+### 📝 Text Summarization
+Automatically generate concise summaries of your text documents.
+- Upload CSV files with text data
+- Choose from multiple LLM models
+- Configure summary length and style
+- Download processed results
+
+[Go to Text Summarizer →](summarize.html)
+
+### 🏷️ Text Classification
+Classify text documents into predefined categories.
+- **One-shot Classification**: Define categories with descriptions
+- **Few-shot Classification**: Train with example documents
+- Support for multiple model types
+- Batch processing capabilities
+
+[Go to Text Classifier →](classify.html)
+
+### 📊 Data Visualization
+Explore and visualize your text processing results.
+- Interactive charts and graphs
+- Summary statistics
+- Export capabilities
+
+[Go to Data Viewer →](visualize.html)
+
+## Quick Start Demo
+
+Here's a simple interactive example of what our tools can do:
+
+```{python}
+#| echo: true
+#| code-fold: false
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Sample data representing text processing results
+np.random.seed(42)
+models = ['Claude Sonnet 4', 'Mistral Large', 'GPT-4', 'Devstral Small']
+accuracy_scores = [0.92, 0.88, 0.90, 0.85]
+processing_times = [2.3, 1.8, 2.1, 1.2]
+
+# Create a simple comparison chart
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+# Accuracy comparison
+ax1.bar(models, accuracy_scores, color=['#2E86AB', '#A23B72', '#F18F01', '#C73E1D'])
+ax1.set_title('Model Accuracy Comparison')
+ax1.set_ylabel('Accuracy Score')
+ax1.set_ylim(0, 1)
+ax1.tick_params(axis='x', rotation=45)
+
+# Processing time comparison
+ax2.bar(models, processing_times, color=['#2E86AB', '#A23B72', '#F18F01', '#C73E1D'])
+ax2.set_title('Processing Time Comparison')
+ax2.set_ylabel('Time (seconds)')
+ax2.tick_params(axis='x', rotation=45)
+
+plt.tight_layout()
+plt.show()
+
+# Display summary statistics
+summary_df = pd.DataFrame({
+    'Model': models,
+    'Accuracy': accuracy_scores,
+    'Speed (s)': processing_times,
+    'Score': [acc/time for acc, time in zip(accuracy_scores, processing_times)]
+})
+
+print("Model Performance Summary:")
+print(summary_df.round(3))
 ```
 
+## How It Works
 
-This is a Quarto website.
+```{python}
+#| echo: true
+#| code-fold: true
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+# Example of how our API processes text
+def simulate_text_processing():
+    """Simulate the text processing workflow"""
+    
+    # Sample input text
+    sample_texts = [
+        "Climate change is a pressing global issue that requires immediate action.",
+        "Machine learning algorithms are revolutionizing data analysis.",
+        "The economic impact of automation continues to reshape industries."
+    ]
+    
+    # Simulate processing results
+    results = []
+    for i, text in enumerate(sample_texts):
+        results.append({
+            'id': f'text_{i+1}',
+            'original_length': len(text),
+            'summary_length': len(text) // 3,
+            'processing_time': np.random.uniform(0.5, 2.0),
+            'confidence': np.random.uniform(0.85, 0.98)
+        })
+    
+    return pd.DataFrame(results)
 
-Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. 
+# Show processing simulation
+processing_results = simulate_text_processing()
+print("Sample Processing Results:")
+print(processing_results.round(3))
 
-## Nemo enim ipsam
-Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+# Create a simple visualization
+plt.figure(figsize=(10, 6))
+plt.scatter(processing_results['original_length'], 
+           processing_results['summary_length'],
+           s=processing_results['confidence']*100,
+           alpha=0.7,
+           c=processing_results['processing_time'],
+           cmap='viridis')
+
+plt.xlabel('Original Text Length (characters)')
+plt.ylabel('Summary Length (characters)')
+plt.title('Text Summarization Performance')
+plt.colorbar(label='Processing Time (s)')
+plt.grid(True, alpha=0.3)
+plt.show()
+```
+
+## Getting Started
+
+1. **Choose Your Task**: Select from text summarization or classification
+2. **Upload Your Data**: Provide CSV files with your text data
+3. **Configure Settings**: Choose models, parameters, and output preferences
+4. **Process & Download**: Run the analysis and download your results
+
+## System Features
+
+- **Multiple LLM Models**: Access to state-of-the-art language models
+- **Batch Processing**: Handle large datasets efficiently
+- **Session Management**: Secure, isolated processing sessions
+- **Real-time Status**: Monitor job progress in real-time
+- **Export Options**: Download results in various formats
+
+## Support
+
+For questions, documentation, or technical support, please refer to our [documentation pages](docs.html) or contact the development team.
+
+---
+
+*Powered by OpenRouter API • Built with Quarto & Python*
